@@ -12,10 +12,13 @@ router.get('', function(req, res, next) {
 });
 
 router.get('/nicole', (req, res, next)=>{
+
+  // return jina
   res.render('index', {title: 'Nicole'});
 });
 
 router.get('/Nairobi', (req, res, next)=>{
+
   res.render('index', {title: 'Nairobi'});
 });
 

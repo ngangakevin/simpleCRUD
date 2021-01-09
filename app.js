@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var driveRouter = require('./routes/driver');
 
 var app = express();
 
@@ -21,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/drive', driveRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -38,4 +40,16 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// create sequelize connection
+const {Sequelize} =  require('sequelize');
+const connection = new Sequelize({
+  host: 'localhost',
+  port: 3306,
+  database: 'driverAPI',
+  dialect: 'mysql',
+  username: 'simpleCRUD',
+  password: 'Mnbvcxz123!',
+});
+
 module.exports = app;
+module.exports = connection;

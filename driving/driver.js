@@ -28,10 +28,10 @@ class Driver {
         // Fuel tank level
         // driver/passanger safety belts
         let allowDrive;
-        if(!this.readyState.handbreak === 'released' 
-            && !this.readyState.fuelTank === 'optimal' 
-            && !this.readyState.safetyBelt === true){
-            !this.toDrive.start();
+        if(this.readyState.handbreak === 'released' 
+            && this.readyState.fuelTank === 'optimal' 
+            && this.readyState.safetyBelt === true){
+            this.toDrive.start();
             allowDrive = true;
             }
         else{

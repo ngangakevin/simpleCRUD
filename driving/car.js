@@ -1,4 +1,3 @@
-var engine = require('./engine');
 class Cars {
     constructor(color, cutoff, model, registration, myEngine){
         this.color = color;
