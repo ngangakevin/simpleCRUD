@@ -1,8 +1,8 @@
+const e = require('express');
 var express = require('express');
+const Driver = require('../models/driver.model');
+const DriversRepository = require('../repository/drivers.repository');
 var router = express.Router();
-var Driver = require('../driving/driver');
-var Cars = require('../driving/car');
-var Engine = require('../driving/engine');
 // import {Cars} from '../driving/car';
 // import {Engine} from '../driving/engine';
 
@@ -36,5 +36,15 @@ router.get('/self-driving', (req, res, next)=>{
   });
   res.status(200).send(d.drive());
 });
+
+router.post('/driver',async(req,res,next)=>{
+  const name = req.body.name;
+  const id_no = req.body.identification_number;
+  const contact = req.body.phone_number;
+  const address = req.body.email;
+  const license = req.body.license;
+  const driver = await DriversRepository.prototype.addDriver(name,address, contact, id_no, license);
+  res.status(201).send(driver);
+})
 
 module.exports = router;

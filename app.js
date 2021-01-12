@@ -22,7 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/drive', driveRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -42,14 +41,14 @@ app.use(function(err, req, res, next) {
 
 // create sequelize connection
 const {Sequelize} =  require('sequelize');
-const connection = new Sequelize({
+const sequelize = new Sequelize({
   host: 'localhost',
   port: 3306,
-  database: 'driverAPI',
+  database: 'driveAPI',
   dialect: 'mysql',
   username: 'simpleCRUD',
   password: 'Mnbvcxz123!',
 });
 
 module.exports = app;
-module.exports = connection;
+module.exports = sequelize;

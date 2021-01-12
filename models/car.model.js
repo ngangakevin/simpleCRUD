@@ -1,6 +1,6 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
-const Engine = require("../driving/engine");
-const {connection} = require('../app');
+const Engine = require("./engine.model");
+const {sequelize} = require('../app');
 
 class Car extends Model{}
 Car.init({
@@ -21,6 +21,13 @@ Car.init({
         type: DataTypes.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         }
-}, { sequelize: connection, modelName: 'cars', paranoid: true });
+}, {sequelize: new Sequelize({
+    host: 'localhost',
+    port: 3306,
+    database: 'driveAPI',
+    dialect: 'mysql',
+    username: 'simpleCRUD',
+    password: 'Mnbvcxz123!',
+  }), modelName: 'cars', paranoid: true });
 Car.hasOne(Engine);
 module.exports = Car;

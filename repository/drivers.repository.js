@@ -27,3 +27,4 @@ class DriversRepository{
         return await Driver.findByPk(driverId)
     }
 }
+module.exports = DriversRepository;

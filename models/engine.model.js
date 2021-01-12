@@ -1,5 +1,5 @@
-const { Model, DataTypes, Sequelize } = require("sequelize/types");
-const {connection} = require('../app');
+const { Model, DataTypes, Sequelize } = require("sequelize");
+const {sequelize} = require('../app');
 
 class Engine extends Model {}
 Engine.init({
@@ -12,5 +12,13 @@ Engine.init({
         type: DataTypes.STRING(32, false),
     },
     engineType:DataTypes.STRING,
-}, {sequelize: connection, modelName: 'engines'});
-module.export = Engine;
+}, {sequelize: new Sequelize({
+    host: 'localhost',
+    port: 3306,
+    database: 'driveAPI',
+    dialect: 'mysql',
+    username: 'simpleCRUD',
+    password: 'Mnbvcxz123!',
+  }), modelName: 'engines'});
+
+module.exports = Engine;
